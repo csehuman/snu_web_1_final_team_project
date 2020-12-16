@@ -248,7 +248,26 @@ app.post("/action", authentication, async (req, res) => {
     }
   });
 
-  return res.send({ player, field, event, actions });
+  const itemLst = await PlayerItem.find({ user: player });
+  const items = [];
+
+  itemLst.forEach((item) => {
+    const myItem = itemManager.getItembyId(item.itemId);
+    let type = "";
+
+    if("str" in myItem) {
+      type = "str"
+    } else if ("def" in myItem) {
+      type = "def"
+    }
+
+    items.push({
+      name: myItem.name,
+      type: type,
+      no: myItem[type]
+    })
+  })
+  return res.send({ player, field, event, actions, items });
 });
 
 const port = 3000;

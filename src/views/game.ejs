@@ -26,6 +26,11 @@
         <br>
     </div>
     <br>
+    <div style="border: 1px solid black; width:30%"> 
+      <span style="font-weight: bold; font-size: 15px;"> 아이템 목록: </span>
+      <div id="items"></div>
+    </div>
+    <br>
     <div id="description" style="border: 1px solid  black; width: 30%">
       <div id="game"></div>
       <div id="event_result"></div>
@@ -33,10 +38,6 @@
     </div>
     <br>
     <div id="control">
-      <button value="1">동</button>
-      <button value="3">서</button>
-      <button value="2">남</button>
-      <button value="0">북</button>
     </div>
 
   <script>
@@ -66,6 +67,14 @@ const sendAction = (url, params = {}) => {
           });
 
           $('#control').append(dom);
+        })
+        
+        $('#items').html('');
+        req.items.forEach((item) => {
+          const dom = $('<div></div>');
+          dom.text(`[${item.name}] ${item.type}: ${item.no}`);
+
+          $('#items').append(dom);
         })
 
         if (event) {

@@ -67,6 +67,10 @@ class ItemManager extends Manager {
     const rand_num = Math.floor(Math.random() * (arrayLength)); 
     return this.items[rand_num];
   }
+
+  getItembyId(id) {
+    return this.items[id-1];
+  }
 }
 
 const constantManager = new ConstantManager(

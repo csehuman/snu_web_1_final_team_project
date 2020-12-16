@@ -123,7 +123,7 @@ const getAttacked = async (_player, _monster) => {
 const getItem = async (_player, _item) => {
   // 사용자 - 아이템 별도 Model로 저장
   playerItem = new PlayerItem({
-    player: _player,
+    user: _player,
     itemId: _item.id
   });
   await playerItem.save()
